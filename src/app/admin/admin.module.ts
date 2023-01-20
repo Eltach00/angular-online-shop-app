@@ -9,6 +9,7 @@ import { DashboardPageComponent } from './dashboard-page/dashboard-page.componen
 import { OrdersPageComponent } from './orders-page/orders-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { AuthService } from './shared/services/auth.service';
 
 const childRoutes: Routes = [
   {
@@ -41,5 +42,6 @@ const childRoutes: Routes = [
     AdminLayoutComponent,
     OrdersPageComponent,
   ],
+  providers: [AuthService],
 })
 export class AdminModule {}
