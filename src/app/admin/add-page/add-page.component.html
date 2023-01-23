@@ -1,1 +1,41 @@
-<p>add-page works!</p>
+<form [formGroup]="addFormGroup">
+  <h2>Add Product</h2>
+  <div class="form-control">
+    <label for="type">Type</label>
+    <input type="text" id="type" formControlName="type" />
+    <div *ngIf="addFormGroup.invalid && addFormGroup.touched">
+      <small *ngIf="addFormGroup.controls['type'].errors?.['required'] "
+        >Choose product</small
+      >
+    </div>
+  </div>
+  <div class="form-control">
+    <label for="title">Title</label>
+    <input type="text" id="title" formControlName="title" />
+    <div *ngIf="addFormGroup.invalid && addFormGroup.touched">
+      <small *ngIf="addFormGroup.controls['title'].errors?.['required'] "
+        >Add product name</small
+      >
+    </div>
+  </div>
+  <div class="form-control">
+    <label for="photo">Photo</label>
+  </div>
+  <div class="form-control"><label for="info">Information</label></div>
+  <div class="form-control">
+    <label for="price">Price</label>
+    <input type="text" id="price" formControlName="price" />
+    <div *ngIf="addFormGroup.invalid && addFormGroup.touched">
+      <small *ngIf="addFormGroup.controls['price'].errors?.['required'] "
+        >Enter Product Price</small
+      >
+    </div>
+  </div>
+  <button
+    class="btn btn-primary btn-black"
+    [disabled]="addFormGroup.invalid || submited"
+    type="submit"
+  >
+    Submit
+  </button>
+</form>

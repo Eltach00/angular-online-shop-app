@@ -8,8 +8,8 @@ import { EditPageComponent } from './edit-page/edit-page.component';
 import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
 import { OrdersPageComponent } from './orders-page/orders-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
 import { AuthService } from './shared/services/auth.service';
+import { AuthGuard } from '../shared/auth.guard';
 
 const childRoutes: Routes = [
   {
@@ -18,10 +18,26 @@ const childRoutes: Routes = [
     children: [
       { path: '', redirectTo: '/admin/login', pathMatch: 'full' },
       { path: 'login', component: LoginPageComponent },
-      { path: 'add', component: AddPageComponent },
-      { path: 'product/:id/edit', component: EditPageComponent },
-      { path: 'dashboard', component: DashboardPageComponent },
-      { path: 'orders', component: OrdersPageComponent },
+      {
+        path: 'add',
+        component: AddPageComponent,
+        //  canActivate: [AuthGuard]
+      },
+      {
+        path: 'product/:id/edit',
+        component: EditPageComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'dashboard',
+        component: DashboardPageComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'orders',
+        component: OrdersPageComponent,
+        canActivate: [AuthGuard],
+      },
     ],
   },
 ];
