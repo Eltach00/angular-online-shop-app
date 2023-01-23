@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/admin/shared/services/auth.service';
 export class LoginPageComponent {
   loginForm: FormGroup;
   submited = false;
+  haveError = false;
 
   constructor(private authService: AuthService, private router: Router) {
     this.loginForm = new FormGroup({
@@ -39,14 +40,17 @@ export class LoginPageComponent {
       .login({
         email: this.loginForm.value.email,
         password: this.loginForm.value.password,
+        returnSecureToken: true,
       })
       .subscribe(
-        () => {
+        (res) => {
           this.loginForm.reset();
           this.router.navigate(['/admin', 'dashboard']);
           this.submited = false;
         },
-        () => {
+        (error) => {
+          console.log(error.message);
+          this.haveError = true;
           this.submited = false;
         }
       );

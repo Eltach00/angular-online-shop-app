@@ -1,6 +1,6 @@
 <nav class="navbar bg-dark">
   <h1>Online Shop</h1>
-  <ul>
+  <ul *ngIf="authService.isAuthenficated(); else logIn">
     <li routerLinkActive="active">
       <a routerLink="/admin/dashboard" href=""> Dashboard</a>
     </li>
@@ -11,12 +11,16 @@
       <a routerLink="/admin/orders" href=""> Orders</a>
     </li>
     <li>
-      <a routerLink="/" href=""> Logout</a>
-    </li>
-    <li routerLinkActive="active">
-      <a routerLink="/admin/login" href=""> Login</a>
+      <a (click)="logout($event)" href=""> Logout</a>
     </li>
   </ul>
+  <ng-template #logIn>
+    <ul>
+      <li routerLinkActive="active">
+        <a routerLink="/admin/login" href=""> Login</a>
+      </li>
+    </ul>
+  </ng-template>
 </nav>
 <div class="container">
   <router-outlet></router-outlet>

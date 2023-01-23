@@ -1,16 +1,61 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { env } from '../../../environments/environment';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
+
+interface Iresponse {
+  displayName: string;
+  email: string;
+  expiresIn: string;
+  idToken: string;
+  kind: string;
+  localId: string;
+  refreshToken: string;
+  registered: boolean;
+}
 
 @Injectable()
 export class AuthService {
   constructor(private http: HttpClient) {}
-  login(user: Object): Observable<Object> {
-    return this.http.post(
-      `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${env.API_KEY}`,
-      user
-    );
+  login(user: { email: string; password: string; returnSecureToken: boolean }) {
+    return this.http
+      .post(
+        `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${env.API_KEY}`,
+        user
+      )
+      .pipe(
+        tap((resp: any) => {
+          this.setToken(resp);
+        })
+      );
+  }
+
+  private setToken(response: Iresponse | null) {
+    if (response) {
+      const expireTime = new Date(
+        new Date().getTime() + parseInt(response.expiresIn) * 1000
+      ); /*need to turn seconds into milliseconds*/
+      localStorage.setItem('expiredTime', expireTime.toString());
+      localStorage.setItem('authToken', response.idToken);
+    } else {
+      localStorage.clear();
+    }
+  }
+
+  get token() {
+    const expireTime = new Date(<string>localStorage.getItem('expiredTime'));
+
+    if (new Date() > expireTime) {
+      this.logOut();
+      return null;
+    }
+    return localStorage.getItem('authToken');
+  }
+  logOut() {
+    this.setToken(null);
+  }
+  isAuthenficated() {
+    return !!this.token;
   }
 }
 
