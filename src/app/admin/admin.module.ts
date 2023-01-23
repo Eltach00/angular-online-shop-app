@@ -10,6 +10,7 @@ import { OrdersPageComponent } from './orders-page/orders-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './shared/services/auth.service';
 import { AuthGuard } from '../shared/auth.guard';
+import { QuillModule } from 'ngx-quill';
 
 const childRoutes: Routes = [
   {
@@ -48,6 +49,7 @@ const childRoutes: Routes = [
     RouterModule.forChild(childRoutes),
     FormsModule,
     ReactiveFormsModule,
+    QuillModule.forRoot(),
   ],
   exports: [RouterModule],
   declarations: [

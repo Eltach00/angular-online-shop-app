@@ -1,31 +1,39 @@
-<form [formGroup]="addFormGroup">
-  <h2>Add Product</h2>
+<form [formGroup]="addFormGroup" (ngSubmit)="submit()">
+  <h2 class="text-center">Add New Product</h2>
   <div class="form-control">
-    <label for="type">Type</label>
-    <input type="text" id="type" formControlName="type" />
-    <div *ngIf="addFormGroup.invalid && addFormGroup.touched">
+    <label for="type">Type:</label>
+    <select formControlName="type">
+      <option value="Phone">Phone</option>
+      <option value="Tablet">Tablet</option>
+      <option value="Laptop">Laptop</option>
+    </select>
+    <div *ngIf="addFormGroup.controls['type'].touched" class="validation">
       <small *ngIf="addFormGroup.controls['type'].errors?.['required'] "
         >Choose product</small
       >
     </div>
   </div>
   <div class="form-control">
-    <label for="title">Title</label>
+    <label for="title">Title:</label>
     <input type="text" id="title" formControlName="title" />
-    <div *ngIf="addFormGroup.invalid && addFormGroup.touched">
+    <div *ngIf="addFormGroup.controls['title'].touched" class="validation">
       <small *ngIf="addFormGroup.controls['title'].errors?.['required'] "
         >Add product name</small
       >
     </div>
   </div>
   <div class="form-control">
-    <label for="photo">Photo</label>
+    <label for="photo">Photo:</label>
+    <quill-editor formControlName="photo"></quill-editor>
   </div>
-  <div class="form-control"><label for="info">Information</label></div>
   <div class="form-control">
-    <label for="price">Price</label>
+    <label for="info">Information:</label>
+    <quill-editor formControlName="info"></quill-editor>
+  </div>
+  <div class="form-control">
+    <label for="price">Price:</label>
     <input type="text" id="price" formControlName="price" />
-    <div *ngIf="addFormGroup.invalid && addFormGroup.touched">
+    <div *ngIf="addFormGroup.controls['price'].touched" class="validation">
       <small *ngIf="addFormGroup.controls['price'].errors?.['required'] "
         >Enter Product Price</small
       >
@@ -36,6 +44,6 @@
     [disabled]="addFormGroup.invalid || submited"
     type="submit"
   >
-    Submit
+    Add Prodcut
   </button>
 </form>
