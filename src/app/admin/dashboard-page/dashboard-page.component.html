@@ -1,1 +1,48 @@
-<p>dashboard-page works!</p>
+<div *ngIf="products.length; else loading">
+  <h2 class="text-center">Dashboard of products</h2>
+  <div class="form-control">
+    <input type="text" [(ngModel)]="term" placeholder="Filter products..." />
+  </div>
+  <table class="table-wrap">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Photo</th>
+        <th>Price</th>
+        <th>Date of creation</th>
+        <th>Open</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pr of products | filterPipe : term; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ pr.title }}</td>
+        <td>
+          <div class="quilImg">
+            <quill-view-html [content]="pr.photo"></quill-view-html>
+          </div>
+        </td>
+        <td>{{ pr.price }}</td>
+        <td>{{ pr.date | date : "short" }}</td>
+        <td>
+          <button
+            class="btn btn-dark"
+            [routerLink]="['/admin', 'product', pr.id, 'edit']"
+          >
+            Open
+          </button>
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="remove(pr.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<ng-template #loading>
+  <div class="text-center">
+    <strong> Loading... </strong>
+  </div>
+</ng-template>

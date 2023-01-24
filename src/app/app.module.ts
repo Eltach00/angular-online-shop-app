@@ -12,6 +12,7 @@ import { QuillModule } from 'ngx-quill';
 import { AuthInterceptor } from './shared/auth.interseptor';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { ProductComponent } from './product/product.component';
+import { FilterPipe } from './pipes/filter-pipe.pipe';
 
 @NgModule({
   declarations: [

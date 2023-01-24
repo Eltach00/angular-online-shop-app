@@ -9,47 +9,17 @@ import { DashboardPageComponent } from './dashboard-page/dashboard-page.componen
 import { OrdersPageComponent } from './orders-page/orders-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './shared/services/auth.service';
-import { AuthGuard } from '../shared/auth.guard';
 import { QuillModule } from 'ngx-quill';
-
-const childRoutes: Routes = [
-  {
-    path: '',
-    component: AdminLayoutComponent,
-    children: [
-      { path: '', redirectTo: '/admin/login', pathMatch: 'full' },
-      { path: 'login', component: LoginPageComponent },
-      {
-        path: 'add',
-        component: AddPageComponent,
-        //  canActivate: [AuthGuard]
-      },
-      {
-        path: 'product/:id/edit',
-        component: EditPageComponent,
-        canActivate: [AuthGuard],
-      },
-      {
-        path: 'dashboard',
-        component: DashboardPageComponent,
-        canActivate: [AuthGuard],
-      },
-      {
-        path: 'orders',
-        component: OrdersPageComponent,
-        canActivate: [AuthGuard],
-      },
-    ],
-  },
-];
+import { AdminChildRoutes } from './admin.child-routes';
+import { FilterPipe } from '../pipes/filter-pipe.pipe';
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forChild(childRoutes),
     FormsModule,
     ReactiveFormsModule,
     QuillModule.forRoot(),
+    AdminChildRoutes,
   ],
   exports: [RouterModule],
   declarations: [
@@ -59,6 +29,7 @@ const childRoutes: Routes = [
     LoginPageComponent,
     AdminLayoutComponent,
     OrdersPageComponent,
+    FilterPipe,
   ],
   providers: [AuthService],
 })

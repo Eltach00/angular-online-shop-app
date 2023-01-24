@@ -1,5 +1,5 @@
 export interface Iproduct {
-  date: string;
+  date: string | Date;
   info: string;
   photo: string;
   price: string;

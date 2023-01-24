@@ -19,6 +19,9 @@
   </ul>
   <ng-template #logIn>
     <ul>
+      <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <a routerLink="/" href=""> Home</a>
+      </li>
       <li routerLinkActive="active">
         <a routerLink="/admin/login" href=""> Login</a>
       </li>

@@ -1,0 +1,22 @@
+.table-wrap {
+  text-align: center;
+  display: inline-block;
+  background-color: #fff;
+  padding: 2rem 2rem;
+  color: #000;
+}
+
+@media screen and (max-width: 600px) {
+  .table-wrap {
+    overflow-x: auto;
+  }
+}
+
+.quilImg {
+  width: 60px;
+  height: 100px;
+}
+
+.form-control {
+  margin-top: 1rem;
+}
