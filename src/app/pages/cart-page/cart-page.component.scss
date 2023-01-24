@@ -2,6 +2,11 @@
   display: flex;
   justify-content: flex-end;
 }
+.center {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
 .container {
   max-width: 900px;
 }

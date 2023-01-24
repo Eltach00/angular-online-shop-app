@@ -6,7 +6,11 @@
       <tr *ngFor="let pr of cart; let i = index">
         <td>{{ pr.type }}</td>
         <td>{{ pr.title }}</td>
-        <td><button class="btn btn-danger">Delete</button></td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteProduct(pr.id)">
+            Delete
+          </button>
+        </td>
         <td>
           <strong>
             {{ pr.price | currency : "$" }}
@@ -17,6 +21,9 @@
   </table>
   <hr />
   <strong class="right"> {{ sumOfCart | currency : "$" }} </strong>
+  <div class="center">
+    <button class="btn btn-danger" (click)="clearCart()">Clear the cart</button>
+  </div>
 </div>
 <ng-template #empty>
   <h2 class="text-center">Cart is empty, add products</h2>

@@ -12,6 +12,7 @@ export class ProductService {
 
   type = 'Phone';
   cartProducts: Iproduct[] = [];
+  localStorageCart = localStorage;
   create(product: any) {
     return this.http.post(`${env.fbDbUrl}/products.json`, product);
   }
@@ -54,5 +55,6 @@ export class ProductService {
 
   addToCart(product: Iproduct) {
     this.cartProducts.push(product);
+    localStorage.setItem('cart', JSON.stringify(this.cartProducts));
   }
 }
