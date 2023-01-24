@@ -1,1 +1,23 @@
-<p>cart-page works!</p>
+<div class="container" *ngIf="cart.length; else empty">
+  <h2 class="text-center">Your Cart:</h2>
+
+  <table class="table-wrap">
+    <tbody>
+      <tr *ngFor="let pr of cart; let i = index">
+        <td>{{ pr.type }}</td>
+        <td>{{ pr.title }}</td>
+        <td><button class="btn btn-danger">Delete</button></td>
+        <td>
+          <strong>
+            {{ pr.price | currency : "$" }}
+          </strong>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <hr />
+  <strong class="right"> {{ sumOfCart | currency : "$" }} </strong>
+</div>
+<ng-template #empty>
+  <h2 class="text-center">Cart is empty, add products</h2>
+</ng-template>

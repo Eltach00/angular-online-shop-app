@@ -10,6 +10,8 @@ import { Iproduct } from 'src/app/shared/interface';
 export class ProductService {
   constructor(private http: HttpClient) {}
 
+  type = 'Phone';
+  cartProducts: Iproduct[] = [];
   create(product: any) {
     return this.http.post(`${env.fbDbUrl}/products.json`, product);
   }
@@ -44,5 +46,13 @@ export class ProductService {
       `${env.fbDbUrl}/products/${product.id}.json`,
       product
     );
+  }
+
+  setType(type: string) {
+    this.type = type;
+  }
+
+  addToCart(product: Iproduct) {
+    this.cartProducts.push(product);
   }
 }
