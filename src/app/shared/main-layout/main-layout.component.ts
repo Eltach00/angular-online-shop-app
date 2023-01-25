@@ -8,7 +8,7 @@ import { ProductService } from 'src/app/admin/shared/services/product.service';
   styleUrls: ['./main-layout.component.scss'],
 })
 export class MainLayoutComponent {
-  type = 'Phone';
+  type = '';
   constructor(private prodService: ProductService, private router: Router) {}
   setType(type: string) {
     this.type = type;

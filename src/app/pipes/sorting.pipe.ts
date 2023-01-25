@@ -6,6 +6,9 @@ import { Iproduct } from '../shared/interface';
 })
 export class SortingPipe implements PipeTransform {
   transform(value: Iproduct[], type = ''): Iproduct[] {
+    if (type === '') {
+      return value;
+    }
     return value.filter((pr) => pr.type == type);
   }
 }

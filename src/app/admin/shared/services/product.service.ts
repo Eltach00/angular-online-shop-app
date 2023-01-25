@@ -10,7 +10,7 @@ import { Iproduct } from 'src/app/shared/interface';
 export class ProductService {
   constructor(private http: HttpClient) {}
 
-  type = 'Phone';
+  type = '';
   cartProducts: Iproduct[] = [];
   localStorageCart = localStorage;
   create(product: any) {
