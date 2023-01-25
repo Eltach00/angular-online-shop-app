@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ProductService } from 'src/app/admin/shared/services/product.service';
 import { Iproduct } from 'src/app/shared/interface';
 
@@ -10,7 +11,7 @@ import { Iproduct } from 'src/app/shared/interface';
 export class CartPageComponent implements OnInit {
   cart: Iproduct[] = [];
   sumOfCart = 0;
-  constructor(private prodService: ProductService) {}
+  constructor(private prodService: ProductService, private router: Router) {}
   ngOnInit(): void {
     const cartFormLocale = JSON.parse(<string>localStorage.getItem('cart'));
     if (cartFormLocale) {
@@ -30,5 +31,8 @@ export class CartPageComponent implements OnInit {
   deleteProduct(id: string) {
     this.cart = this.cart.filter((pr) => pr.id !== id);
     localStorage.setItem('cart', JSON.stringify(this.cart));
+  }
+  moveToDelivery() {
+    this.router.navigate(['/', 'delivery']);
   }
 }

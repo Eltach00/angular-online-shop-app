@@ -14,6 +14,8 @@ import { MainPageComponent } from './pages/main-page/main-page.component';
 import { ProductComponent } from './product/product.component';
 import { FilterPipe } from './pipes/filter-pipe.pipe';
 import { SortingPipe } from './pipes/sorting.pipe';
+import { DeliveryComponent } from './pages/delivery/delivery.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { SortingPipe } from './pipes/sorting.pipe';
     MainPageComponent,
     ProductComponent,
     SortingPipe,
+    DeliveryComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,6 +34,8 @@ import { SortingPipe } from './pipes/sorting.pipe';
     AdminModule,
     HttpClientModule,
     QuillModule.forRoot(),
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     {

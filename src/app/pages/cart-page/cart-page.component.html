@@ -23,6 +23,9 @@
   <strong class="right"> {{ sumOfCart | currency : "$" }} </strong>
   <div class="center">
     <button class="btn btn-danger" (click)="clearCart()">Clear the cart</button>
+    <button class="btn btn-dark" (click)="moveToDelivery()">
+      Move to Delivery
+    </button>
   </div>
 </div>
 <ng-template #empty>
