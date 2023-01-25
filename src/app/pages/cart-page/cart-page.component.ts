@@ -17,7 +17,6 @@ export class CartPageComponent implements OnInit {
     if (cartFormLocale) {
       this.cart = cartFormLocale;
     }
-    console.log(this.cart);
 
     this.makeSumOfCart();
   }

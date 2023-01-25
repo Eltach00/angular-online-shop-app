@@ -49,7 +49,6 @@ export class LoginPageComponent {
           this.submited = false;
         },
         (error) => {
-          console.log(error.message);
           this.haveError = true;
           this.submited = false;
         }
