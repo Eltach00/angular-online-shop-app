@@ -12,6 +12,7 @@ import { AuthService } from './shared/services/auth.service';
 import { QuillModule } from 'ngx-quill';
 import { AdminChildRoutes } from './admin.child-routes';
 import { FilterPipe } from '../pipes/filter-pipe.pipe';
+import { ProductService } from './shared/services/product.service';
 
 @NgModule({
   imports: [
@@ -31,6 +32,6 @@ import { FilterPipe } from '../pipes/filter-pipe.pipe';
     OrdersPageComponent,
     FilterPipe,
   ],
-  providers: [AuthService],
+  providers: [AuthService, ProductService],
 })
 export class AdminModule {}

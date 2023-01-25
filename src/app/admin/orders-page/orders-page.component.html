@@ -1,1 +1,43 @@
-<p>orders-page works!</p>
+<div *ngIf="orders.length; else loading">
+  <h2 class="text-center">Dashboard of products</h2>
+  <table class="table-wrap">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Address</th>
+        <th>Product Name</th>
+        <th>Price</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <td>{{ order.date | date : "short" }}</td>
+        <td>{{ order.name }}</td>
+        <td>{{ order.phone }}</td>
+        <td>{{ order.address }}</td>
+        <td>
+          <ul *ngFor="let pr of order.orders">
+            <li>{{ pr.title }}</li>
+          </ul>
+        </td>
+        <td>
+          <p>{{ reduceSum(order.orders) | currency : "$" }}</p>
+          <p>{{ order.payment }}</p>
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="remove(order.id)">
+            Complited
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<ng-template #loading>
+  <div class="text-center">
+    <strong> No orders... </strong>
+  </div>
+</ng-template>

@@ -19,6 +19,10 @@ export class CartPageComponent implements OnInit {
     }
     console.log(this.cart);
 
+    this.makeSumOfCart();
+  }
+
+  makeSumOfCart() {
     this.sumOfCart = this.cart.reduce(
       (sum: number, pr: Iproduct) => (sum += parseInt(pr.price)),
       0
@@ -30,6 +34,7 @@ export class CartPageComponent implements OnInit {
   }
   deleteProduct(id: string) {
     this.cart = this.cart.filter((pr) => pr.id !== id);
+    this.makeSumOfCart();
     localStorage.setItem('cart', JSON.stringify(this.cart));
   }
   moveToDelivery() {
